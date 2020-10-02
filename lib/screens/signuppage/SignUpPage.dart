@@ -1,20 +1,19 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:heka_app/screens/signinpage/signinLocalStyle.dart';
 
-//[SigninPage] is a widget that represents a sign in form
-class SigninPage extends StatefulWidget {
+class SignUpPage extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
     // TODO: implement createState
-    return SigninPageState();
+    return SignUpPageState();
   }
 }
 
-class SigninPageState extends State<SigninPage> {
+class SignUpPageState extends State<SignUpPage> {
   TextEditingController emailAddressController;
   TextEditingController passwordController;
+  TextEditingController userNameController;
 
   @override
   void initState() {
@@ -22,14 +21,7 @@ class SigninPageState extends State<SigninPage> {
     super.initState();
     emailAddressController = TextEditingController();
     passwordController = TextEditingController();
-
-    emailAddressController.addListener(() {
-      print(emailAddressController.text);
-    });
-
-    passwordController.addListener(() {
-      print(emailAddressController.text);
-    });
+    userNameController = TextEditingController();
   }
 
   @override
@@ -53,15 +45,7 @@ class SigninPageState extends State<SigninPage> {
             children: [
               //TODO: Plugin error for google fonts
               SizedBox(
-                height: 15,
-              ),
-              Text("HEKA",
-                  style: GoogleFonts.poppins(
-                      fontSize: 55,
-                      color: Colors.white,
-                      fontWeight: FontWeight.w600)),
-              SizedBox(
-                height: 70,
+                height: 55,
               ),
               //TODO: Set style to be poppings using GoogleFonts
               Padding(
@@ -69,34 +53,13 @@ class SigninPageState extends State<SigninPage> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text("Sign in",
+                    Text("Sign up",
                         style: TextStyle(
                             fontSize: 30,
                             color: Colors.white,
                             fontWeight: FontWeight.w500)),
                     SizedBox(
                       height: 20,
-                    ),
-                    Row(
-                      children: [
-                        Text(
-                          "New user?",
-                          style: TextStyle(fontSize: 17, color: Colors.white),
-                        ),
-                        GestureDetector(
-                          onTap: () {
-                            Navigator.pushNamed(context, "/signuppage");
-                          },
-                          child: Text(
-                            "Create an account",
-                            style: TextStyle(
-                                fontSize: 17, color: Color(0xff3A0CA3)),
-                          ),
-                        ),
-                      ],
-                    ),
-                    SizedBox(
-                      height: 10,
                     ),
                     Container(
                       padding: EdgeInsets.all(5),
@@ -113,6 +76,23 @@ class SigninPageState extends State<SigninPage> {
                       ),
                     ),
                     SizedBox(
+                      height: 10,
+                    ),
+                    Container(
+                      padding: EdgeInsets.all(5),
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(40),
+                          color: Color(0xff3A0CA3)),
+                      child: TextFormField(
+                        controller: emailAddressController,
+                        decoration: InputDecoration(
+                            border: InputBorder.none,
+                            hintText: "Name",
+                            hintStyle: GoogleFonts.poppins(
+                                color: Colors.white, fontSize: 13)),
+                      ),
+                    ),
+                    SizedBox(
                       height: 15,
                     ),
                     Container(
@@ -124,7 +104,7 @@ class SigninPageState extends State<SigninPage> {
                             controller: passwordController,
                             decoration: InputDecoration(
                                 border: InputBorder.none,
-                                hintText: "password",
+                                hintText: "Password",
                                 hintStyle: GoogleFonts.poppins(
                                     color: Colors.white, fontSize: 13)))),
                   ],
@@ -138,10 +118,12 @@ class SigninPageState extends State<SigninPage> {
                     String userEmail = emailAddressController.text != null
                         ? emailAddressController.text
                         : "";
+                    String userName = userNameController.text != null
+                        ? emailAddressController.text
+                        : "";
                     String userPassword = passwordController.text != null
                         ? passwordController.text
                         : "";
-                    print("${userEmail.trim()} ${userPassword.trim()} values");
                     //check if user has an account already
                     //If user has account, we sign the user in
                     //If not, create account user or redirect to sign up page
@@ -155,7 +137,7 @@ class SigninPageState extends State<SigninPage> {
                     child: Padding(
                       padding: EdgeInsets.only(top: 14),
                       child: Text(
-                        "Sign in",
+                        "Sign up",
                         textAlign: TextAlign.center,
                         style: TextStyle(color: Colors.blue.shade700),
                       ),

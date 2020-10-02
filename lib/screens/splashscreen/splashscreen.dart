@@ -54,6 +54,7 @@ class SplashScreenState extends State<SplashScreen>
     );
   }
 
+  /// [buildTransformRotation] return a rotation object
   Transform buildTransformRotation() {
     return Transform.rotate(
         angle: pi * 2 * animationController.value,
