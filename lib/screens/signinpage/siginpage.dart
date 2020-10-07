@@ -1,7 +1,10 @@
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:heka_app/screens/signinpage/signinLocalStyle.dart';
+import 'package:rflutter_alert/rflutter_alert.dart';
 
 //[SigninPage] is a widget that represents a sign in form
 class SigninPage extends StatefulWidget {
@@ -15,6 +18,7 @@ class SigninPage extends StatefulWidget {
 class SigninPageState extends State<SigninPage> {
   TextEditingController emailAddressController;
   TextEditingController passwordController;
+  FirebaseAuth firebaseAuth;
 
   @override
   void initState() {
@@ -30,6 +34,19 @@ class SigninPageState extends State<SigninPage> {
     passwordController.addListener(() {
       print(emailAddressController.text);
     });
+    initFirebase();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    emailAddressController.dispose();
+    passwordController.dispose();
+  }
+
+  Future<FirebaseApp> initFirebase() async {
+    var fb = await Firebase.initializeApp();
+    return fb;
   }
 
   @override
@@ -104,6 +121,7 @@ class SigninPageState extends State<SigninPage> {
                           borderRadius: BorderRadius.circular(40),
                           color: Color(0xff3A0CA3)),
                       child: TextFormField(
+                        style: TextStyle(color: Colors.white),
                         controller: emailAddressController,
                         decoration: InputDecoration(
                             border: InputBorder.none,
@@ -121,6 +139,7 @@ class SigninPageState extends State<SigninPage> {
                             borderRadius: BorderRadius.circular(40),
                             color: Color(0xff3A0CA3)),
                         child: TextFormField(
+                            style: TextStyle(color: Colors.white),
                             controller: passwordController,
                             decoration: InputDecoration(
                                 border: InputBorder.none,
@@ -134,7 +153,8 @@ class SigninPageState extends State<SigninPage> {
                 height: 20,
               ),
               FlatButton(
-                  onPressed: () {
+                  onPressed: () async {
+                    firebaseAuth = FirebaseAuth.instance;
                     String userEmail = emailAddressController.text != null
                         ? emailAddressController.text
                         : "";
@@ -143,6 +163,25 @@ class SigninPageState extends State<SigninPage> {
                         : "";
                     print("${userEmail.trim()} ${userPassword.trim()} values");
                     //check if user has an account already
+                    try {
+                      UserCredential userCredential = await FirebaseAuth
+                          .instance
+                          .signInWithEmailAndPassword(
+                              email: userEmail, password: userPassword);
+                      if (userCredential.user != null) {
+                        Navigator.pushNamed(context, "/infopages");
+                      }
+                    } on FirebaseAuthException catch (e) {
+                      Alert(
+                              context: context,
+                              title: "FAILED AUTHENTICATION",
+                              desc: "Email not recognized.")
+                          .show();
+                      emailAddressController.clear();
+                      passwordController.clear();
+                    } catch (e) {
+                      print(e);
+                    }
                     //If user has account, we sign the user in
                     //If not, create account user or redirect to sign up page
                   },
