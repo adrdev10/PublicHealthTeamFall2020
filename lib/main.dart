@@ -4,6 +4,7 @@ import 'package:heka_app/screens/infopages/infopages.dart';
 import 'package:heka_app/screens/signinpage/siginpage.dart';
 import 'package:heka_app/screens/signuppage/SignUpPage.dart';
 import 'package:heka_app/screens/splashscreen/splashscreen.dart';
+import 'package:heka_app/screens/testdashboard.dart';
 
 void main() {
   SystemChrome.setSystemUIOverlayStyle(
@@ -23,7 +24,7 @@ class MyApp extends StatelessWidget {
       initialRoute: "/",
       //Name routes
       routes: {
-        "/": (context) => SplashScreen(),
+        "/": (context) => TestDashboard(),
         "/signinpage": (context) => SigninPage(),
         "/signuppage": (context) => SignUpPage(),
         "/infopages": (context) => InfoPages(),
