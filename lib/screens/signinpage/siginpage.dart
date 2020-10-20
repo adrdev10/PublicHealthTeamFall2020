@@ -53,6 +53,7 @@ class SigninPageState extends State<SigninPage> {
   Widget build(BuildContext context) {
     // TODO: implement build
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       body: SafeArea(
         child: Container(
           height: MediaQuery.of(context).size.height,
