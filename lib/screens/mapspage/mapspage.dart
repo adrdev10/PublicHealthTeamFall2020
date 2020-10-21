@@ -1,12 +1,23 @@
+import 'dart:async';
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
-class MapSample extends StatefulWidget {
+class MapPage extends StatefulWidget {
   @override
-  State<MapSample> createState() => MapSampleState();
+  State<MapPage> createState() => MapPageState();
 }
 
-class MapSampleState extends State<MapSample> {
+// [
+//   {
+//     "lat": 20.0,
+//     "long": 30.0
+//     "infected": true | false
+//   },
+// ]
+
+class MapPageState extends State<MapPage> {
   Completer<GoogleMapController> _controller = Completer();
 
   static final CameraPosition _kGooglePlex = CameraPosition(
@@ -14,21 +25,16 @@ class MapSampleState extends State<MapSample> {
     zoom: 14.4746,
   );
 
-  static final CameraPosition _kLake = CameraPosition(
-      bearing: 192.8334901395799,
-      target: LatLng(37.43296265331129, -122.08832357078792),
-      tilt: 59.440717697143555,
-      zoom: 19.151926040649414);
-
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
       body: GoogleMap(
-        mapType: MapType.hybrid,
+        mapType: MapType.normal,
         initialCameraPosition: _kGooglePlex,
         onMapCreated: (GoogleMapController controller) {
           _controller.complete(controller);
         },
+        markers: getMarkers([120.0, 230.0]),
       ),
       floatingActionButton: FloatingActionButton.extended(
         onPressed: _goToTheLake,
@@ -38,8 +44,20 @@ class MapSampleState extends State<MapSample> {
     );
   }
 
+//Creates markers for infected users at random locations
+  Set<Marker> getMarkers(List<double> listOfUsers) {
+    Set<Marker> positionsSet = Set();
+    var filteredData = listOfUsers.where((element) => element > 2.0);
+    listOfUsers.forEach((element) {
+      var newMarker = Marker(
+          markerId: MarkerId("value1"), position: LatLng(element, element));
+      positionsSet.add(newMarker);
+    });
+    return positionsSet;
+  }
+
   Future<void> _goToTheLake() async {
     final GoogleMapController controller = await _controller.future;
-    controller.animateCamera(CameraUpdate.newCameraPosition(_kLake));
+    // controller.animateCamera(CameraUpdate.newCameraPosition(_kLake));
   }
 }

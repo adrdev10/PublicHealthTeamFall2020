@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:heka_app/screens/infopages/infopages.dart';
+import 'package:heka_app/screens/mapspage/mapspage.dart';
 import 'package:heka_app/screens/signinpage/siginpage.dart';
 import 'package:heka_app/screens/signuppage/SignUpPage.dart';
 import 'package:heka_app/screens/splashscreen/splashscreen.dart';
@@ -27,7 +28,7 @@ class MyApp extends StatelessWidget {
         "/": (context) => SplashScreen(),
         "/signinpage": (context) => SigninPage(),
         "/signuppage": (context) => SignUpPage(),
-        "/infopages": (context) => InfoPages(),
+        "/infopages": (context) => MapPage(),
       },
       debugShowCheckedModeBanner: false,
       title: 'Heka',
