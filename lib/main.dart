@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:heka_app/screens/infopages/infopages.dart';
 import 'package:heka_app/screens/mapspage/mapspage.dart';
 import 'package:heka_app/screens/signinpage/siginpage.dart';
@@ -18,6 +19,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData(
+          textTheme: GoogleFonts.poppinsTextTheme(),
           inputDecorationTheme: InputDecorationTheme(
               focusedBorder: UnderlineInputBorder(
                   // borderSide: BorderSide(color: Color.)
@@ -25,7 +27,7 @@ class MyApp extends StatelessWidget {
       initialRoute: "/",
       //Name routes
       routes: {
-        "/": (context) => SplashScreen(),
+        "/": (context) => InfoPages(),
         "/signinpage": (context) => SigninPage(),
         "/signuppage": (context) => SignUpPage(),
         "/infopages": (context) => MapPage(),
