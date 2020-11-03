@@ -46,7 +46,7 @@ class PageContainer extends StatelessWidget {
             Positioned(
               //TODO: Style flat button
               child: FlatButton(
-                onPressed: () => print("Application started"),
+                onPressed: () => Navigator.pushNamed(context, "/signinpage"),
                 child: Text("Start Application"),
               ),
               bottom: 100,

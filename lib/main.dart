@@ -27,10 +27,11 @@ class MyApp extends StatelessWidget {
       initialRoute: "/",
       //Name routes
       routes: {
-        "/": (context) => InfoPages(),
+        "/": (context) => SplashScreen(),
+        "/infopage": (context) => InfoPages(),
         "/signinpage": (context) => SigninPage(),
         "/signuppage": (context) => SignUpPage(),
-        "/infopages": (context) => MapPage(),
+        "/mappage": (context) => MapPage(),
       },
       debugShowCheckedModeBanner: false,
       title: 'Heka',
