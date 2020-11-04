@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:heka_app/screens/dashboard/dashboard.dart';
 import 'package:heka_app/screens/infopages/infopages.dart';
+import 'package:heka_app/screens/mapspage/mapspage.dart';
 import 'package:heka_app/screens/signinpage/siginpage.dart';
 import 'package:heka_app/screens/signuppage/SignUpPage.dart';
 import 'package:heka_app/screens/splashscreen/splashscreen.dart';
-import 'package:heka_app/screens/testdashboard.dart';
+// import 'package:heka_app/screens/testdashboard.dart';
 
 void main() {
   SystemChrome.setSystemUIOverlayStyle(
@@ -17,6 +20,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData(
+          textTheme: GoogleFonts.poppinsTextTheme(),
           inputDecorationTheme: InputDecorationTheme(
               focusedBorder: UnderlineInputBorder(
                   // borderSide: BorderSide(color: Color.)
@@ -25,9 +29,11 @@ class MyApp extends StatelessWidget {
       //Name routes
       routes: {
         "/": (context) => SplashScreen(),
+        "/infopage": (context) => InfoPages(),
+        "/dashboard" (context) => Dashboard(),
         "/signinpage": (context) => SigninPage(),
         "/signuppage": (context) => SignUpPage(),
-        "/infopages": (context) => InfoPages(),
+        "/mappage": (context) => MapPage(),
       },
       debugShowCheckedModeBanner: false,
       title: 'Heka',
