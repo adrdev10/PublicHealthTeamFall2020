@@ -170,7 +170,7 @@ class SigninPageState extends State<SigninPage> {
                           .signInWithEmailAndPassword(
                               email: userEmail, password: userPassword);
                       if (userCredential.user != null) {
-                        Navigator.pushNamed(context, "/infopages");
+                        Navigator.pushNamed(context, "/dashboard");
                       }
                     } on FirebaseAuthException catch (e) {
                       Alert(
