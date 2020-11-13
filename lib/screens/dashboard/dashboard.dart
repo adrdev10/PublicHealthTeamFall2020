@@ -3,19 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:heka_app/domain/entities/covidstatedata.dart';
 import 'package:heka_app/network/client.dart';
 
-// import 'package:flutter_test/flutter_test.dart';
-
-//import 'package:heka_app/main.dart';
-
-class MyApp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Dashboard(),
-    );
-  }
-}
-
 class Dashboard extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
