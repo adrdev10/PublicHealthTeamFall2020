@@ -18,10 +18,12 @@ class MyApp extends StatelessWidget {
 
 class Dashboard extends StatefulWidget {
   @override
-  _DashboardState createState() => _DashboardState();
+  State<StatefulWidget> createState() {
+    return DashboardState();
+  }
 }
 
-class _DashboardState extends State<Dashboard> {
+class DashboardState extends State<Dashboard> {
   TextEditingController TotalCases;
   TextEditingController ActiveCases;
   TextEditingController Recovered;
@@ -29,9 +31,9 @@ class _DashboardState extends State<Dashboard> {
   TextEditingController Stats;
 
   @override
-  void initState() {
-    super.initState();
-  }
+  //void initState() {
+  //  super.initState();
+  //}
 
   @override
   Widget build(BuildContext context) {
