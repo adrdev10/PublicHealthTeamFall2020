@@ -1,4 +1,8 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:heka_app/domain/entities/covidstatedata.dart';
+import 'package:heka_app/network/client.dart';
+
 // import 'package:flutter_test/flutter_test.dart';
 
 //import 'package:heka_app/main.dart';
@@ -63,7 +67,7 @@ class _DashboardState extends State<Dashboard> {
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(5.0),
                       ),
-                      child: Text('US'),
+                      child: Text('FLORIDA'),
                       textColor: Color(0xffffffff),
                     ),
                   ),
@@ -74,7 +78,7 @@ class _DashboardState extends State<Dashboard> {
                     child: RaisedButton(
                       onPressed: () {},
                       color: Color(0xff520382),
-                      child: Text('Global'),
+                      child: Text('US'),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10.0),
                       ),
@@ -150,8 +154,26 @@ class _DashboardState extends State<Dashboard> {
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(15.0),
                       ),
-                      child: Text('Deaths'),
-                      textColor: Color(0xffffffff),
+                      //child: Text('Deaths'),
+                      //textColor: Color(0xffffffff),
+
+                      child: FutureBuilder(
+                          future: Client().getDataPerState("fl"),
+                          builder: (context,
+                              AsyncSnapshot<CovidStateData> snapshot) {
+                            if (snapshot.data != null) {
+                              var deathNumbers = snapshot.data.death;
+                              var pos = snapshot.data.positive;
+                              return Center(
+                                child: Container(
+                                  child: Column(
+                                    children: [Text("$deathNumbers $pos")],
+                                  ),
+                                ),
+                              );
+                            }
+                            return CircularProgressIndicator();
+                          }),
                     ),
                   ),
                 ],

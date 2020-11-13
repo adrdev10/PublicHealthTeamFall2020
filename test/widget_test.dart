@@ -1,13 +1,26 @@
-// This is a basic Flutter widget test.
-//
-// To perform an interaction with a widget in your test, use the WidgetTester
-// utility that Flutter provides. For example, you can send tap and scroll
-// gestures. You can also use WidgetTester to find child widgets in the widget
-// tree, read text, and verify that the values of widget properties are correct.
-
-import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:heka_app/domain/entities/covidstatedata.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
 
-import 'package:heka_app/main.dart';
+void main() {
+  test("Testing for network call", () async {
+    String base_url = "https://api.covidtracking.com/v1/states/";
+    var client = http.Client();
 
-void main() {}
+    Future<CovidStateData> getDataPerState(String state) async {
+      CovidStateData covidStateData;
+      try {
+        base_url += "$state/current.json";
+        var res = await client.get(base_url);
+        var data = json.decode(res.body);
+        covidStateData = CovidStateData.fromJson(data);
+      } catch (e) {
+        print(e);
+      }
+      return covidStateData;
+    }
+
+    await getDataPerState("fl");
+  });
+}
