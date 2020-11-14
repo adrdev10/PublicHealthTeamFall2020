@@ -21,6 +21,7 @@ void main() {
       return covidStateData;
     }
 
-    await getDataPerState("fl");
+    var data = await getDataPerState("fl");
+    print(data.death);
   });
 }

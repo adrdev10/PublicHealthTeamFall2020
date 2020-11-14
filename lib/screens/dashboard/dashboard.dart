@@ -150,13 +150,15 @@ class DashboardState extends State<Dashboard> {
                           future: Client().getDataPerState("fl"),
                           builder: (context,
                               AsyncSnapshot<CovidStateData> snapshot) {
-                            if (snapshot.data != null) {
+                            if (snapshot.data != null &&
+                                snapshot.data.death != null) {
                               var deathNumbers = snapshot.data.death;
                               var pos = snapshot.data.positive;
+                              print(deathNumbers);
                               return Center(
                                 child: Container(
                                   child: Column(
-                                    children: [Text("$deathNumbers $pos")],
+                                    children: [Text("$deathNumbers |  $pos")],
                                   ),
                                 ),
                               );
