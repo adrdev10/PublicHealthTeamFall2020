@@ -91,11 +91,31 @@ class DashboardState extends State<Dashboard> {
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(15.0),
                       ),
-                      child: Text('Total Cases'),
-                      //child: TextFormField(
-                      // controller: TotalCases,)
-                      //),
-                      textColor: Color(0xffffffff),
+                      //child: Text('Total Cases'),
+                      //textColor: Color(0xffffffff),
+                      child: FutureBuilder(
+                          future: Client().getDataPerState("fl"),
+                          builder: (context,
+                              AsyncSnapshot<CovidStateData> snapshot) {
+                            if (snapshot.data != null &&
+                                snapshot.data.death != null) {
+                              var total = snapshot.data.positive +
+                                  snapshot.data.negative;
+                              return Center(
+                                child: Container(
+                                  child: Column(
+                                    children: [
+                                      Text("Total Cases \n \n $total",
+                                          style: TextStyle(
+                                              color: Colors.white,
+                                              fontWeight: FontWeight.bold))
+                                    ],
+                                  ),
+                                ),
+                              );
+                            }
+                            return CircularProgressIndicator();
+                          }),
                     ),
                   ),
                   SizedBox(width: 10),
@@ -108,8 +128,30 @@ class DashboardState extends State<Dashboard> {
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(15.0),
                       ),
-                      child: Text('Active Cases'),
-                      textColor: Color(0xffffffff),
+                      //child: Text('Active Cases'),
+                      //textColor: Color(0xffffffff),
+                      child: FutureBuilder(
+                          future: Client().getDataPerState("fl"),
+                          builder: (context,
+                              AsyncSnapshot<CovidStateData> snapshot) {
+                            if (snapshot.data != null &&
+                                snapshot.data.death != null) {
+                              var active = snapshot.data.positive;
+                              return Center(
+                                child: Container(
+                                  child: Column(
+                                    children: [
+                                      Text("Active Cases \n \n $active",
+                                          style: TextStyle(
+                                              color: Colors.white,
+                                              fontWeight: FontWeight.bold))
+                                    ],
+                                  ),
+                                ),
+                              );
+                            }
+                            return CircularProgressIndicator();
+                          }),
                     ),
                   ),
                 ],
@@ -129,8 +171,30 @@ class DashboardState extends State<Dashboard> {
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(15.0),
                       ),
-                      child: Text('Recovered'),
-                      textColor: Color(0xffffffff),
+                      //child: Text('Recovered'),
+                      //textColor: Color(0xffffffff),
+                      child: FutureBuilder(
+                          future: Client().getDataPerState("fl"),
+                          builder: (context,
+                              AsyncSnapshot<CovidStateData> snapshot) {
+                            if (snapshot.data != null &&
+                                snapshot.data.death != null) {
+                              var recovered = snapshot.data.negative;
+                              return Center(
+                                child: Container(
+                                  child: Column(
+                                    children: [
+                                      Text("Recovered \n \n $recovered",
+                                          style: TextStyle(
+                                              color: Colors.white,
+                                              fontWeight: FontWeight.bold))
+                                    ],
+                                  ),
+                                ),
+                              );
+                            }
+                            return CircularProgressIndicator();
+                          }),
                     ),
                   ),
                   SizedBox(width: 10),
@@ -153,12 +217,16 @@ class DashboardState extends State<Dashboard> {
                             if (snapshot.data != null &&
                                 snapshot.data.death != null) {
                               var deathNumbers = snapshot.data.death;
-                              var pos = snapshot.data.positive;
-                              print(deathNumbers);
+                              //print(deathNumbers);
                               return Center(
                                 child: Container(
                                   child: Column(
-                                    children: [Text("$deathNumbers |  $pos")],
+                                    children: [
+                                      Text("Deaths \n \n $deathNumbers",
+                                          style: TextStyle(
+                                              color: Colors.white,
+                                              fontWeight: FontWeight.bold))
+                                    ],
                                   ),
                                 ),
                               );
@@ -170,7 +238,7 @@ class DashboardState extends State<Dashboard> {
                 ],
               ),
               SizedBox(
-                height: 30,
+                height: 20,
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -184,8 +252,11 @@ class DashboardState extends State<Dashboard> {
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(15.0),
                       ),
-                      child: Text('Get Resources'),
-                      textColor: Color(0xffffffff),
+                      child: Text('Get Resources',
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold)),
+                      //textColor: Color(0xffffffff),
                     ),
                   ),
                   //SizedBox(width: 10),
@@ -203,8 +274,10 @@ class DashboardState extends State<Dashboard> {
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(15.0),
                   ),
-                  child: Text('Answer Questions'),
-                  textColor: Color(0xffffffff),
+                  child: Text('Answer Questions',
+                      style: TextStyle(
+                          color: Colors.white, fontWeight: FontWeight.bold)),
+                  //textColor: Color(0xffffffff),
                 ),
               ),
               Row(
@@ -253,22 +326,6 @@ class DashboardState extends State<Dashboard> {
               ),
               SizedBox(
                 height: 5,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  ButtonTheme(
-                    minWidth: 410,
-                    height: 40,
-                    child: RaisedButton(
-                      onPressed: () {},
-                      color: Color(0xff1A6DFF),
-
-                      //child: Text('Statistics'),
-                      //textColor: Color(0xff000000),
-                    ),
-                  ),
-                ],
               ),
             ],
           ),

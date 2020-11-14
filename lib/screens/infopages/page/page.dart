@@ -45,9 +45,15 @@ class PageContainer extends StatelessWidget {
           if (image == "assets/page3.png")
             Positioned(
               //TODO: Style flat button
-              child: FlatButton(
+              child: RaisedButton(
+                color: Color(0xffF72585),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(30.0),
+                ),
                 onPressed: () => Navigator.pushNamed(context, "/signinpage"),
-                child: Text("Start Application"),
+                child: Text("Start Application",
+                    style: TextStyle(
+                        color: Colors.white, fontWeight: FontWeight.bold)),
               ),
               bottom: 100,
             ),
