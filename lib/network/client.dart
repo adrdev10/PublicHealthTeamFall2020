@@ -19,4 +19,8 @@ class Client {
     }
     return covidStateData;
   }
+
+  Future<CovidStateData> getWeeklyData(String state) async {
+    var url = base_url + "${state}/daily.json";
+  }
 }

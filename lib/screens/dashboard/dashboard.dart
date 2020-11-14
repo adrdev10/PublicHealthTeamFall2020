@@ -25,7 +25,6 @@ class DashboardState extends State<Dashboard> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('HEKA')),
       body: SafeArea(
         child: Container(
           height: MediaQuery.of(context).size.height,
@@ -42,7 +41,7 @@ class DashboardState extends State<Dashboard> {
             //mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               SizedBox(
-                height: 2,
+                height: MediaQuery.of(context).size.height * .05,
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -158,7 +157,12 @@ class DashboardState extends State<Dashboard> {
                               return Center(
                                 child: Container(
                                   child: Column(
-                                    children: [Text("$deathNumbers |  $pos")],
+                                    children: [
+                                      Text(
+                                        "$deathNumbers |  $pos",
+                                        style: TextStyle(color: Colors.white),
+                                      )
+                                    ],
                                   ),
                                 ),
                               );
@@ -253,22 +257,6 @@ class DashboardState extends State<Dashboard> {
               ),
               SizedBox(
                 height: 5,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  ButtonTheme(
-                    minWidth: 410,
-                    height: 40,
-                    child: RaisedButton(
-                      onPressed: () {},
-                      color: Color(0xff1A6DFF),
-
-                      //child: Text('Statistics'),
-                      //textColor: Color(0xff000000),
-                    ),
-                  ),
-                ],
               ),
             ],
           ),
