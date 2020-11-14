@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:heka_app/screens/bottomnav/bottomnav.dart';
 import 'package:heka_app/screens/dashboard/dashboard.dart';
 import 'package:heka_app/screens/infopages/infopages.dart';
 import 'package:heka_app/screens/mapspage/mapspage.dart';
@@ -30,6 +31,7 @@ class MyApp extends StatelessWidget {
       routes: {
         "/": (context) => SplashScreen(),
         "/infopage": (context) => InfoPages(),
+        "/main": (context) => BottomNav(),
         "/dashboard": (context) => Dashboard(),
         "/signinpage": (context) => SigninPage(),
         "/signuppage": (context) => SignUpPage(),
