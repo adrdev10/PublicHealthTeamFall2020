@@ -3,6 +3,10 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:geolocator/geolocator.dart';
+import 'package:location_permissions/location_permissions.dart';
+
+
 
 class MapPage extends StatefulWidget {
   @override
@@ -17,8 +21,26 @@ class MapPage extends StatefulWidget {
 //   },
 // ]
 
+
 class MapPageState extends State<MapPage> {
   Completer<GoogleMapController> _controller = Completer();
+
+
+  Position position;
+  
+
+  
+
+  Future<void> getPermission()async{
+    PermissionStatus permission = await LocationPermissions().requestPermissions();
+   
+  }//Request user's permission to track location.
+
+  void _getCurrentLocation() async{
+    Position position = await Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.high);
+
+  }
+
 
   static final CameraPosition _kGooglePlex = CameraPosition(
     target: LatLng(37.42796133580664, -122.085749655962),
