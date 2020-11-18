@@ -4,8 +4,9 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:location/location.dart';
 import 'package:location_permissions/location_permissions.dart';
-
+import 'package:location_platform_interface/location_platform_interface.dart';
 
 
 class MapPage extends StatefulWidget {
@@ -24,26 +25,39 @@ class MapPage extends StatefulWidget {
 
 class MapPageState extends State<MapPage> {
   Completer<GoogleMapController> _controller = Completer();
+  static  double lat = 0.0;
+  static  double lng = 0.0;
 
+  Location location = new Location();
 
-  Position position;
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState(
+      
+    );
+    _getLocation();
+  }
   
-
-  
-
-  Future<void> getPermission()async{
-    PermissionStatus permission = await LocationPermissions().requestPermissions();
-   
-  }//Request user's permission to track location.
-
-  void _getCurrentLocation() async{
-    Position position = await Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.high);
-
+  void _getLocation() async{
+     location = new Location();
+    try{
+      await location.getLocation().then((onValue){
+        print(onValue.latitude.toString()+ ","+onValue.longitude.toString());
+        lat = onValue.latitude;
+        lng = onValue.longitude;
+      });
+      print(location);
+    } catch (e){
+      print(e);
+      if(e.code == 'PERMISSION DENIED'){
+        print('Permission was denied');
+      }
+    }
   }
 
-
-  static final CameraPosition _kGooglePlex = CameraPosition(
-    target: LatLng(37.42796133580664, -122.085749655962),
+    CameraPosition _kGooglePlex = CameraPosition(
+    target: LatLng(lat, lng),
     zoom: 14.4746,
   );
 
@@ -57,11 +71,6 @@ class MapPageState extends State<MapPage> {
           _controller.complete(controller);
         },
         markers: getMarkers([120.0, 230.0]),
-      ),
-      floatingActionButton: FloatingActionButton.extended(
-        onPressed: _goToTheLake,
-        label: Text('To the lake!'),
-        icon: Icon(Icons.directions_boat),
       ),
     );
   }
@@ -83,3 +92,5 @@ class MapPageState extends State<MapPage> {
     // controller.animateCamera(CameraUpdate.newCameraPosition(_kLake));
   }
 }
+
+
