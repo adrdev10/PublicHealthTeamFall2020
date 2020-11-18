@@ -22,7 +22,7 @@ class SplashScreenState extends State<SplashScreen>
     // TODO: implement initState
     super.initState();
     Future.delayed(new Duration(milliseconds: 2500), () {
-      Navigator.pushNamed(context, "/signinpage");
+      Navigator.pushNamed(context, "/infopage");
     });
 
     animationController = AnimationController(
