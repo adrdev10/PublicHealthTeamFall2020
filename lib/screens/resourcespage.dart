@@ -1,6 +1,5 @@
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
-import 'package:flutter/cupertino.dart';
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -16,41 +15,58 @@ class Resourcespage extends StatelessWidget {
     )
         ),
 
-            //   child: Container(
-            //      decoration: new BoxDecoration(
-            //          image: new DecorationImage(
-            //               return Image(image: AssetImage('assets/clip-1072 2.png'));
-            //              fit: BoxFit.fill,
-            //          )
-            //      )
-
-            //  )
     width: MediaQuery.of(context).size.width,
     child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
-      children: [
+      children:<Widget> [
+              SizedBox(
+                height: MediaQuery.of(context).size.height * .05,
+              ),
       Container(
-        Text("RESOURCES",
+       child: Text('RESOURCES',
               style: TextStyle(
               fontSize: 35,
               color: Colors.white,
-              fontWeight: FontWeight.w500)), 
-      ]),
-      
-           Row(
+              fontWeight: FontWeight.w500)),
+      )],
+              
+      Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                      padding: EdgeInsets.all(15),
+                      decoration: new BoxDecoration(
+                      image: new Image(clip-1072 2.png),
+                      
+                  )
+                  child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.right,
+                      Text('HEKA',
+                      style: TextStyle(
+                      fontSize: 35,
+                      color: Colors.white,
+                      fontWeight: FontWeight.w500)),
+                      )  
+      ), 
+                  
+                  ]),
+
+                     Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
                   ButtonTheme(
-                    minWidth: 130.0,
-                    height: 40,
+                    minWidth: 110.0,
+                    height: 20,
                     child: RaisedButton(
                       onPressed: () {},
                       color: Color(0xff300EB5),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(5.0),
                       ),
-                      child: Text('FLORIDA'),
-                      textColor: Color(0xffffffff),
+                      child: Link(path),    // I will place the link right there but i am not too sure how to do that
+
+                     
                     ),
                   ),
                   SizedBox(width: 5),
@@ -60,7 +76,7 @@ class Resourcespage extends StatelessWidget {
                     child: RaisedButton(
                       onPressed: () {},
                       color: Color(0xff520382),
-                      child: Text('US'),
+                      child: Link(),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10.0),
                       ),
@@ -68,39 +84,27 @@ class Resourcespage extends StatelessWidget {
                     ),
                   ),
                 ],
-              ),
+              ),   
+                      
+                    
+                  ),
+                  
+              
+              
 
 
 
 
-      Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-        Container(
-    padding: EdgeInsets.all(15),
-    decoration: new BoxDecoration(
-      image: new Image.asset(clip-1072 2.png),
-     fit: BoxFit.fill,
-    ),
-    mainAxisAlignment: Maint
-    Container(
-        Text("HEKA",
-              style: TextStyle(
-              fontSize: 25,
-              color: Colors.white,
-              fontWeight: FontWeight.w500)),
-        )
-      ],)
-   
-
-      )
+      ));
         
-        )
+        
         
            
                   
               
-               ),
+              
   }
   
 }
+
+
