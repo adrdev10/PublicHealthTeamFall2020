@@ -30,7 +30,7 @@ class MyApp extends StatelessWidget {
       initialRoute: "/",
       //Name routes
       routes: {
-        "/": (context) => SplashScreen(),
+        "/": (context) => Resourcespage(),
         "/infopage": (context) => InfoPages(),
         "/main": (context) => BottomNav(),
         "/dashboard": (context) => Dashboard(),
