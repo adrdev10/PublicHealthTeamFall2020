@@ -1,9 +1,20 @@
+import 'dart:math';
+
+import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:heka_app/domain/entities/covidstatedata.dart';
 import 'package:heka_app/network/client.dart';
 
 class Dashboard extends StatefulWidget {
+  final List<Color> availableColors = [
+    Colors.purpleAccent,
+    Colors.yellow,
+    Colors.lightBlue,
+    Colors.orange,
+    Colors.pink,
+    Colors.redAccent,
+  ];
   @override
   State<StatefulWidget> createState() {
     return DashboardState();
@@ -283,20 +294,26 @@ class DashboardState extends State<Dashboard> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
                   FlatButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      setState(() {});
+                    },
                     //color: Color(0xff520382),
                     color: Colors.transparent,
                     child: Text('Daily'),
                     textColor: Color(0xffffffff),
                   ),
                   FlatButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      setState(() {});
+                    },
                     color: Colors.transparent,
                     child: Text('Weekly'),
                     textColor: Color(0xffffffff),
                   ),
                   FlatButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      setState(() {});
+                    },
                     color: Colors.transparent,
                     child: Text('Monthly'),
                     textColor: Color(0xffffffff),
@@ -306,30 +323,124 @@ class DashboardState extends State<Dashboard> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
-                  ButtonTheme(
-                    minWidth: 300.0,
-                    height: 120,
-                    child: RaisedButton(
-                      onPressed: () {},
-                      color: Color(0xffC4C4C4),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(30.0),
-                      ),
-
-                      //mainAxisAlignment: MainAxisAlignment.center,
-                      child: Text('Statistics'),
-                      textColor: Color(0xff000000),
+                  Container(
+                    height: 200,
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                      child: BarChart(randomData()),
                     ),
                   ),
                 ],
-              ),
-              SizedBox(
-                height: 5,
               ),
             ],
           ),
         ),
       ),
     );
+  }
+
+  BarChartGroupData groupData(int x, double y,
+      {Color barColor = Colors.white}) {
+    return BarChartGroupData(x: x, barRods: [
+      BarChartRodData(
+          y: y + 1,
+          width: 15,
+          backDrawRodData: BackgroundBarChartRodData(show: true, y: 20))
+    ]);
+  }
+
+  List<BarChartGroupData> showingGroups() => List.generate(7, (index) {
+        switch (index) {
+          case 0:
+            return groupData(0, 5);
+          case 1:
+            return groupData(1, 3);
+          case 2:
+            return groupData(2, 2);
+          case 3:
+            return groupData(3, 100);
+          case 4:
+            return groupData(4, 300);
+          case 5:
+            return groupData(5, 250);
+          case 6:
+            return groupData(6, 50);
+            break;
+          default:
+            return null;
+        }
+      });
+
+  BarChartData randomData() {
+    return BarChartData(
+        barTouchData: BarTouchData(
+          enabled: false,
+        ),
+        titlesData: FlTitlesData(
+            show: true,
+            bottomTitles: SideTitles(
+                showTitles: true,
+                getTextStyles: (value) => const TextStyle(
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 14),
+                margin: 16,
+                getTitles: (double value) {
+                  switch (value.toInt()) {
+                    case 0:
+                      return 'M';
+                    case 1:
+                      return 'T';
+                    case 2:
+                      return 'W';
+                    case 3:
+                      return 'T';
+                    case 4:
+                      return 'F';
+                    case 5:
+                      return 'S';
+                    case 6:
+                      return 'S';
+                    default:
+                      return '';
+                  }
+                }),
+            leftTitles: SideTitles(
+              showTitles: false,
+            )),
+        barGroups: List.generate(7, (index) {
+          switch (index) {
+            case 0:
+              return groupData(0, Random().nextInt(15).toDouble() + 6,
+                  barColor: widget.availableColors[
+                      Random().nextInt(widget.availableColors.length)]);
+            case 1:
+              return groupData(1, Random().nextInt(15).toDouble() + 6,
+                  barColor: widget.availableColors[
+                      Random().nextInt(widget.availableColors.length)]);
+            case 2:
+              return groupData(2, Random().nextInt(15).toDouble() + 6,
+                  barColor: widget.availableColors[
+                      Random().nextInt(widget.availableColors.length)]);
+            case 3:
+              return groupData(3, Random().nextInt(15).toDouble() + 6,
+                  barColor: widget.availableColors[
+                      Random().nextInt(widget.availableColors.length)]);
+            case 4:
+              return groupData(4, Random().nextInt(15).toDouble() + 6,
+                  barColor: widget.availableColors[
+                      Random().nextInt(widget.availableColors.length)]);
+            case 5:
+              return groupData(5, Random().nextInt(15).toDouble() + 6,
+                  barColor: widget.availableColors[
+                      Random().nextInt(widget.availableColors.length)]);
+            case 6:
+              return groupData(6, Random().nextInt(15).toDouble() + 6,
+                  barColor: widget.availableColors[
+                      Random().nextInt(widget.availableColors.length)]);
+            default:
+              return null;
+          }
+        }));
   }
 }
