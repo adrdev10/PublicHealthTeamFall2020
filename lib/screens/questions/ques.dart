@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 
-class PageContainer extends StatelessWidget {
+class PageContainerTips extends StatelessWidget {
   String title;
   String description;
   String image;
 
-  PageContainer({this.title, this.description, this.image});
+  PageContainerTips({this.title, this.description, this.image});
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.all(50),
+      padding: const EdgeInsets.all(30),
       color: Color(0xff1A6DFF),
       width: double.infinity,
       height: double.infinity,
@@ -39,21 +39,37 @@ class PageContainer extends StatelessWidget {
             ),
           ),
           Positioned(
-            child: Image.asset(image),
-            bottom: 100,
-          ),
-          if (image == "assets/instruction.jpeg")
-            Positioned(
-              //TODO: Style flat button
-              child: RaisedButton(
-                padding: EdgeInsets.only(top: 20),
-                onPressed: () => Navigator.pushNamed(context, "/dashboard"),
-                color: Color(0xffF72585),
-                child: Text("Switch to Dashboard"),
-                textColor: Color(0xffffffff),
+            child: Container(
+              width: MediaQuery.of(context).size.width,
+              height: MediaQuery.of(context).size.height * .5,
+              child: Image.asset(
+                image,
+                fit: BoxFit.scaleDown,
               ),
-              bottom: 100,
             ),
+            bottom: 160,
+          ),
+          if (image == "assets/instruction.jpg")
+            Positioned(
+              bottom: 90,
+              child: Container(
+                child: Image.asset("assets/healthy.jpg"),
+                width: MediaQuery.of(context).size.width,
+                height: MediaQuery.of(context).size.height * .25,
+              ),
+            ),
+          Positioned(
+            bottom: 30,
+            //TODO: Style flat button
+            child: FloatingActionButton(
+              // color: Colors.white,
+              // padding: EdgeInsets.only(top: 20),
+              onPressed: () => Navigator.pushNamed(context, "/dashboard"),
+              // color: Color(0xffF72585),
+              child: Text("X"),
+              // textColor: Color(0xffffffff),
+            ),
+          ),
         ],
       ),
     );

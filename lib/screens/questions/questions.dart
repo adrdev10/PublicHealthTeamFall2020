@@ -2,7 +2,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:heka_app/screens/infopages/page/page.dart';
 
-class InfoPages extends StatelessWidget {
+import 'ques.dart';
+
+class TipsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
@@ -11,20 +13,20 @@ class InfoPages extends StatelessWidget {
         child: Container(
           child: PageView(
             children: [
-              PageContainer(
+              PageContainerTips(
                 title: "Symptoms",
                 description: "Track your symptoms of COVID-19 and get tested.",
                 image: "assets/symptoms.jpg",
               ),
-              PageContainer(
+              PageContainerTips(
                 title: "Precautions",
                 description: "Help prevent the spread of COVID-19",
                 image: "assets/precautions.jpg",
               ),
-              PageContainer(
+              PageContainerTips(
                 title: "If infected",
                 description: "Quarantine for 14 days and eat healthy",
-                image: "assets/instructions.jpeg",
+                image: "assets/instruction.jpg",
               ),
             ],
           ),

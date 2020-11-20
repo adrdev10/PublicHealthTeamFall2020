@@ -202,7 +202,9 @@ class DashboardState extends State<Dashboard> {
                 minWidth: 300.0,
                 height: 45,
                 child: RaisedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.pushNamed(context, "/tips");
+                  },
                   color: Color(0xff520382),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(15.0),
