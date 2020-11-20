@@ -247,7 +247,8 @@ class DashboardState extends State<Dashboard> {
                     minWidth: 300.0,
                     height: 45,
                     child: RaisedButton(
-                      onPressed: () {},
+                      onPressed: () =>
+                          Navigator.pushNamed(context, "/signinpage"),
                       color: Color(0xff580E36),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(15.0),
@@ -269,7 +270,7 @@ class DashboardState extends State<Dashboard> {
                 minWidth: 300.0,
                 height: 45,
                 child: RaisedButton(
-                  onPressed: () {},
+                  onPressed: () => Navigator.pushNamed(context, "/signinpage"),
                   color: Color(0xff520382),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(15.0),
