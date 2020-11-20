@@ -287,7 +287,7 @@ class DashboardState extends State<Dashboard> {
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(15.0),
                   ),
-                  child: Text('Answer Questions',
+                  child: Text('Tips',
                       style: TextStyle(
                           color: Colors.white, fontWeight: FontWeight.bold)),
                   //textColor: Color(0xffffffff),
