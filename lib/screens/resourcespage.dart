@@ -37,9 +37,29 @@ class Resourcespage extends StatelessWidget {
                                 color: Colors.white,
                                 fontWeight: FontWeight.w500)),
                       ]),
-                ])
+                ],
+                SizedBox(
+                height: 10,
+              ),
+             
        //          width: MediaQuery.of(context).size.width,
-          
+            
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  ButtonTheme(
+                    minWidth: 250.0,
+                    height: 100,
+                    child: RaisedButton(
+                      onPressed: () {},
+                      color: Color(0xff7209B7),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10.0),
+                      ),
+                      child: Text('GET TESTED - STAY SAFE'),
+                      textColor: Color(0xffffffff),
+                    ),
+                  ),
               SizedBox(
                 height: MediaQuery.of(context).size.height * .05,
               ),
@@ -48,25 +68,25 @@ class Resourcespage extends StatelessWidget {
                 children: <Widget>[
                   ButtonTheme(
                     minWidth: 130.0,
-                    height: 40,
+                    height: 100,
                     child: RaisedButton(
                       onPressed: () {},
-                      color: Color(0xff300EB5),
+                      color: Color(0xff6CA632),
                       shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(5.0),
+                        borderRadius: BorderRadius.circular(10.0),
                       ),
-                      child: Text('FLORIDA'),
+                      child: Text('Closest testing site'),
                       textColor: Color(0xffffffff),
                     ),
                   ),
                   SizedBox(width: 5),
                   ButtonTheme(
                     minWidth: 130.0,
-                    height: 40,
+                    height: 100,
                     child: RaisedButton(
                       onPressed: () {},
-                      color: Color(0xff520382),
-                      child: Text('US'),
+                      color: Color(0xffD48133),
+                      child: Text('Mental Health Support'),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10.0),
                       ),
@@ -75,12 +95,33 @@ class Resourcespage extends StatelessWidget {
                   ),
                 ],
               ),
-              SizedBox(
-                height: 10,
+               SizedBox(
+                height: MediaQuery.of(context).size.height * .05,
               ),
-              
-                ));
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  ButtonTheme(
+                    minWidth: 250.0,
+                    height: 100,
+                    child: RaisedButton(
+                      onPressed: () {},
+                      color: Color(0xffD05237),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10.0),
+                      ),
+                      child: Text('Medications'),
+                      textColor: Color(0xffffffff),
+                    ),
+                  ),
+                ],),
 
+
+        ],
+        ),
+        ),
+        ),);
+  }}
 //  width: MediaQuery.of(context).size.width,
 
     // //   Column(
@@ -138,5 +179,5 @@ class Resourcespage extends StatelessWidget {
     //                 ),
 
     //     ));
-  }
-}
+  
+
