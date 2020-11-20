@@ -1,4 +1,6 @@
 import 'package:url_launcher/url_launcher.dart';
+import 'dart:io';
+// import 'package:url_launcher/url_launcher.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -102,6 +104,22 @@ class Resourcespage extends StatelessWidget {
     );
   }
 }
+//  width: MediaQuery.of(context).size.width,
+
+// //   Column(
+//         crossAxisAlignment: CrossAxisAlignment.center,
+//     children:<Widget> [
+//             SizedBox(
+//               height: MediaQuery.of(context).size.height * .05,
+//             ),
+
+//                    Row(
+//               mainAxisAlignment: MainAxisAlignment.center,
+//               children: <Widget>[
+//                 ButtonTheme(
+//                   minWidth: 110.0,
+//                   height: 20,
+//                   child: RaisedButton(
 
 //                   // I am using this one now to insert the url but I am not too sure if it is the right one
 //                     onPressed:_launchURL,

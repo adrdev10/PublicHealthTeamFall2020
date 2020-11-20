@@ -6,6 +6,7 @@ import 'package:heka_app/screens/dashboard/dashboard.dart';
 import 'package:heka_app/screens/infopages/infopages.dart';
 import 'package:heka_app/screens/mapspage/mapspage.dart';
 import 'package:heka_app/screens/resourcespage.dart';
+import 'package:heka_app/screens/questions/questions.dart';
 import 'package:heka_app/screens/signinpage/siginpage.dart';
 import 'package:heka_app/screens/signuppage/SignUpPage.dart';
 import 'package:heka_app/screens/splashscreen/splashscreen.dart';
@@ -37,6 +38,7 @@ class MyApp extends StatelessWidget {
         "/signinpage": (context) => SigninPage(),
         "/signuppage": (context) => SignUpPage(),
         "/mappage": (context) => MapPage(),
+        "/tips": (context) => TipsPage(),
       },
       debugShowCheckedModeBanner: false,
       title: 'Heka',
