@@ -39,7 +39,7 @@ class MapPageState extends State<MapPage> {
     _getLocation();
   }
   
-  void _getLocation() async{
+  /*void _getLocation() async{
      location = new Location();
     try{
       await location.getLocation().then((onValue){
@@ -54,12 +54,49 @@ class MapPageState extends State<MapPage> {
         print('Permission was denied');
       }
     }
+    controller.animateCamera(CameraUpdate.newCameraPosition(
+      CameraPosition(
+        bearing: 0,
+        target: LatLng(lat, lng),
+        zoom: 17.0,
+      ),
+      ));
+  }*/
+
+  //create circle for user's location on google maps
+  Set<Circle> circles = Set.from([Circle(
+    circleId: CircleId(id),
+    center: LatLng(lat,lng),
+    radius: 4000,
+    )]);
+
+
+
+  //Get User's location through google maps.
+  void _getLocation() async{
+    final GoogleMapController controller = await _controller.future;
+    LocationData currentLocation;
+    var location = new Location();
+    try {
+        currentLocation = await location.getLocation();
+      } on Exception {
+         currentLocation = null;
+       }
+
+    controller.animateCamera(CameraUpdate.newCameraPosition(
+      CameraPosition(
+        bearing: 0,
+        target: LatLng(currentLocation.latitude, currentLocation.longitude),
+        zoom: 17.0,
+      ),
+    ));
   }
 
     CameraPosition _kGooglePlex = CameraPosition(
     target: LatLng(lat, lng),
     zoom: 14.4746,
   );
+
 
   @override
   Widget build(BuildContext context) {
@@ -70,10 +107,19 @@ class MapPageState extends State<MapPage> {
         onMapCreated: (GoogleMapController controller) {
           _controller.complete(controller);
         },
+        onCameraMove: null,
+        circles: circles,
+        myLocationButtonEnabled: true,
         markers: getMarkers([120.0, 230.0]),
+      ),
+      floatingActionButton: FloatingActionButton.extended(
+        onPressed: _getLocation, 
+        label: Text(''),
+        icon: Icon(Icons.location_on),
       ),
     );
   }
+
 
 //Creates markers for infected users at random locations
   Set<Marker> getMarkers(List<double> listOfUsers) {
