@@ -5,6 +5,7 @@ import 'package:heka_app/screens/bottomnav/bottomnav.dart';
 import 'package:heka_app/screens/dashboard/dashboard.dart';
 import 'package:heka_app/screens/infopages/infopages.dart';
 import 'package:heka_app/screens/mapspage/mapspage.dart';
+import 'package:heka_app/screens/resourcespage.dart';
 import 'package:heka_app/screens/signinpage/siginpage.dart';
 import 'package:heka_app/screens/signuppage/SignUpPage.dart';
 import 'package:heka_app/screens/splashscreen/splashscreen.dart';
@@ -29,7 +30,7 @@ class MyApp extends StatelessWidget {
       initialRoute: "/",
       //Name routes
       routes: {
-        "/": (context) => SplashScreen(),
+        "/": (context) => Resourcespage(),
         "/infopage": (context) => InfoPages(),
         "/main": (context) => BottomNav(),
         "/dashboard": (context) => Dashboard(),
