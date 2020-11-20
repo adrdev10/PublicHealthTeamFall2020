@@ -63,15 +63,6 @@ class MapPageState extends State<MapPage> {
       ));
   }*/
 
-  //create circle for user's location on google maps
-  Set<Circle> circles = Set.from([Circle(
-    circleId: CircleId(id),
-    center: LatLng(lat,lng),
-    radius: 4000,
-    )]);
-
-
-
   //Get User's location through google maps.
   void _getLocation() async{
     final GoogleMapController controller = await _controller.future;
@@ -97,6 +88,54 @@ class MapPageState extends State<MapPage> {
     zoom: 14.4746,
   );
 
+ //create circles as a "heat map" on google maps
+  Set<Circle> circles = Set.from([Circle(
+    circleId: CircleId('1'),
+    center: LatLng(25.769364092918536, -80.37574091998015),
+    fillColor: Color.fromRGBO(171, 39, 133, 0.1),
+    strokeColor: Color.fromRGBO(171, 39, 133, 0.5),
+    radius: 750,
+    strokeWidth: 5,
+    ),
+
+    Circle(
+      circleId: CircleId('2'),
+      center: LatLng(25.77420459001883, -80.35005608643283),
+     fillColor: Color.fromRGBO(170, 39, 133, 0.41),
+     strokeColor: Color.fromRGBO(170, 39, 133, 0.5),
+      radius: 555,
+     strokeWidth: 5,
+    ),
+
+    Circle(
+      circleId: CircleId('3'),
+      center: LatLng(25.77420459001883, -80.35005608643283),
+     fillColor: Color.fromRGBO(170, 39, 133, 0.64),
+     strokeColor: Color.fromRGBO(170, 39, 133, 0.5),
+      radius: 625,
+     strokeWidth: 5,
+    ),
+
+    Circle(
+      circleId: CircleId('4'),
+      center: LatLng(25.789803088655784, -80.38206479482601),
+     fillColor: Color.fromRGBO(170, 39, 133, 0.86),
+     strokeColor: Color.fromRGBO(170, 39, 133, 0.5),
+      radius: 690,
+     strokeWidth: 5,
+    ),
+    
+    Circle(
+      circleId: CircleId('5'),
+      center: LatLng(25.74104768762691, -80.34211060941574),
+     fillColor: Color.fromRGBO(170, 39, 133, 0.53),
+     strokeColor: Color.fromRGBO(170, 39, 133, 0.53),
+      radius: 840,
+     strokeWidth: 5,
+    ),
+
+    ]);
+  
 
   @override
   Widget build(BuildContext context) {
@@ -112,14 +151,19 @@ class MapPageState extends State<MapPage> {
         myLocationButtonEnabled: true,
         markers: getMarkers([120.0, 230.0]),
       ),
-      floatingActionButton: FloatingActionButton.extended(
-        onPressed: _getLocation, 
-        label: Text(''),
-        icon: Icon(Icons.location_on),
-      ),
+
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          _getLocation();
+        },
+      child: Icon(Icons.my_location_sharp),
+      backgroundColor: Colors.pinkAccent,
+       ),
+
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+    
     );
   }
-
 
 //Creates markers for infected users at random locations
   Set<Marker> getMarkers(List<double> listOfUsers) {
